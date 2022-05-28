@@ -5,3 +5,11 @@ module "vpc-dev" {
     project_name = "dev-website"
 }
 
+module "asg-dev" {
+    source = "../../Resources/asg"
+    project_name     = "dev-website"
+    ami              = "ami-0022f774911c1d690"
+    instance_type    = "t2.small"
+    desired_capacity = "2"
+    id_subnet        = module.vpc-dev.id_subnet
+}

@@ -5,3 +5,11 @@ module "vpc-stg" {
     project_name = "stg-website"
 }
 
+module "asg-stg" {
+    source = "../../Resources/asg"
+    project_name     = "stg-website"
+    ami              = "ami-0022f774911c1d690"
+    instance_type    = "t2.micro"
+    desired_capacity = "2"
+    id_subnet        = module.vpc-stg.id_subnet
+}
