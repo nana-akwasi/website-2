@@ -3,7 +3,7 @@ resource "aws_subnet" "subnet-1" {
   cidr_block = var.subnet_cidr_1
 
   tags = {
-    Name = var.project_name-1
+    Name = var.project_name_1
   }
 }
 
@@ -12,6 +12,6 @@ resource "aws_subnet" "subnet-2" {
   cidr_block = var.subnet_cidr_2
 
   tags = {
-    Name = var.project_name-2
+    Name = var.project_name_2
   }
 }

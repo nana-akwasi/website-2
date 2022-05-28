@@ -3,7 +3,8 @@ module "vpc-dev" {
     vpc_cidr     = "10.0.0.0/16"
     subnet_cidr_1  = "10.0.0.0/24"
     subnet_cidr_2  = "10.10.0.0/24"
-    project_name = "dev-website"
+    project_name_1 = "dev-website-1"
+    project_name_2 = "dev-website-2"
 }
 
 module "asg-dev" {

@@ -3,7 +3,8 @@ module "vpc-stg" {
     vpc_cidr     = "10.10.0.0/16"
     subnet_cidr_1  = "10.10.0.0/24"
     subnet_cidr_2  = "10.20.0.0/24"
-    project_name = "stg-website"
+    project_name_1 = "stg-website-1"
+    project_name_2 = "stg-website-2"
 }
 
 module "asg-stg" {
