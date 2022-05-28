@@ -1,0 +1,120 @@
+name: 'Terraform-Pipeline'
+
+on:
+  push:
+    branches:
+    - main
+#    paths:
+#    - 'Environments/**'
+#    - 'Resources/**'
+
+jobs:
+  dev:
+    name: 'Deploy to Dev'
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+
+    - name: Terraform Init
+      run: terraform -chdir=Environments/development init
+
+    - name: Terraform Plan
+      run: terraform -chdir=Environments/development plan -input=false
+
+    - name: Terraform Apply
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      run: terraform -chdir=Environments/development apply -auto-approve -input=false
+
+#    - name: Terraform Destroy
+#      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+#      run: terraform -chdir=Environments/development destroy -auto-approve -input=false
+
+  stg:
+    name: 'Deploy to Stg'
+    needs: dev
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+
+    - name: Terraform Init
+      run: terraform -chdir=Environments/staging init
+
+    - name: Terraform Plan
+      run: terraform -chdir=Environments/staging plan -input=false
+
+    - name: Terraform Apply
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      run: terraform -chdir=Environments/staging apply -auto-approve -input=false
+
+#    - name: Terraform Destroy
+#      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+#      run: terraform -chdir=Environments/staging destroy -auto-approve -input=false
+
+  prd:
+    name: 'Deploy to Prd'
+    needs: stg
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+
+    - name: Terraform Init
+      run: terraform -chdir=Environments/production init
+
+    - name: Terraform Plan
+      run: terraform -chdir=Environments/production plan -input=false
+
+    - name: Terraform Apply
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      run: terraform -chdir=Environments/production apply -auto-approve -input=false
+
+#    - name: Terraform Destroy
+#      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+#      run: terraform -chdir=Environments/production destroy -auto-approve -input=false
