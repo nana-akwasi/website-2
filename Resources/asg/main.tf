@@ -15,7 +15,7 @@ resource "aws_autoscaling_group" "main" {
   launch_configuration      = aws_launch_configuration.main.name
   vpc_zone_identifier       = [var.id_subnet]
 
-  tag = {
+  tags = {
     Name                = var.project_name
     propagate_at_launch = true
   }
