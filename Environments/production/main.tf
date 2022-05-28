@@ -13,3 +13,10 @@ module "asg-prd" {
     desired_capacity = "3"
     id_subnet        = module.vpc-prd.id_subnet
 }
+
+module "alb-prd" {
+    source = "../../Resources/load-balancer"
+    project_name     = "prd-website"
+    id_vpc           = module.vpc-prd.id_vpc
+    id_subnet        = module.vpc-prd.id_subnet
+}

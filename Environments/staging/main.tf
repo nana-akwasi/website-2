@@ -13,3 +13,10 @@ module "asg-stg" {
     desired_capacity = "2"
     id_subnet        = module.vpc-stg.id_subnet
 }
+
+module "alb-stg" {
+    source = "../../Resources/load-balancer"
+    project_name     = "stg-website"
+    id_vpc           = module.vpc-stg.id_vpc
+    id_subnet        = module.vpc-stg.id_subnet
+}

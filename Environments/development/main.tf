@@ -13,3 +13,10 @@ module "asg-dev" {
     desired_capacity = "2"
     id_subnet        = module.vpc-dev.id_subnet
 }
+
+module "alb-dev" {
+    source = "../../Resources/load-balancer"
+    project_name     = "dev-website"
+    id_vpc           = module.vpc-dev.id_vpc
+    id_subnet        = module.vpc-dev.id_subnet
+}
