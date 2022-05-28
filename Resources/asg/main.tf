@@ -13,7 +13,7 @@ resource "aws_autoscaling_group" "main" {
   health_check_type         = "EC2"
   force_delete              = true
   launch_configuration      = aws_launch_configuration.main.name
-  vpc_zone_identifier       = [var.id_subnet]
+  vpc_zone_identifier       = var.id_subnet
 
   tag {
     key                 = "Name"

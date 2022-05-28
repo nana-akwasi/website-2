@@ -1,5 +1,5 @@
 output "id_subnet" {
-    value = aws_subnet.main.id
+    value = ["${aws_subnet.subnet-1.id}", "${aws_subnet.subnet-2.id}]"
 }
 
 output "id_vpc" {

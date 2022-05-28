@@ -3,7 +3,7 @@ variable "project_name" {
 }
 
 variable "id_subnet" {
-    type = string
+    type = set(string)
 }
 
 variable "id_vpc" {

@@ -15,5 +15,5 @@ variable "desired_capacity" {
 }
 
 variable "id_subnet" {
-    type = string
+    type = set(string)
 }
