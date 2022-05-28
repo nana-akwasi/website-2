@@ -10,6 +10,10 @@ variable "subnet_cidr_2" {
     type = string
 }
 
+variable "project_name" {
+    type = string
+}
+
 variable "project_name_1" {
     type = string
 }

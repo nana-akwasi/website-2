@@ -3,6 +3,7 @@ module "vpc-prd" {
     vpc_cidr     = "10.20.0.0/16"
     subnet_cidr_1  = "10.20.0.0/24"
     subnet_cidr_2  = "10.30.0.0/24"
+    project_name     = "prd-website"
     project_name_1 = "prd-website-1"
     project_name_2 = "prd-website-2"
 }
