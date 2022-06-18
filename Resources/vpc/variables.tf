@@ -21,3 +21,5 @@ variable "project_name_1" {
 variable "project_name_2" {
     type = string
 }
+
+
