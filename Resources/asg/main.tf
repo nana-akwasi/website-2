@@ -4,6 +4,7 @@ resource "aws_launch_configuration" "main" {
   instance_type = var.instance_type
   key_name      = "website-2"
   security_groups = [aws_security_group.main.id]
+  user_data = "${file("${path.module}/user-data.sh")}"
 }
 
 resource "aws_autoscaling_group" "main" {
