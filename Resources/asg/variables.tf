@@ -21,3 +21,7 @@ variable "id_subnet" {
 variable "id_vpc" {
     type = string
 }
+
+variable "target_group_arns" {
+    type = string
+}

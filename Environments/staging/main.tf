@@ -16,6 +16,7 @@ module "asg-stg" {
     desired_capacity = "2"
     id_subnet        = module.vpc-stg.id_subnet
     id_vpc           = module.vpc-stg.id_vpc
+    target_group_arns = module.alb-stg.target_group_arns
 }
 
 module "alb-stg" {

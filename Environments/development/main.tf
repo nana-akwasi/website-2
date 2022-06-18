@@ -16,6 +16,7 @@ module "asg-dev" {
     desired_capacity = "2"
     id_subnet        = module.vpc-dev.id_subnet
     id_vpc           = module.vpc-dev.id_vpc
+    target_group_arns = module.alb-dev.target_group_arns
 }
 
 module "alb-dev" {

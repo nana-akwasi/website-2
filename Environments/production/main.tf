@@ -16,6 +16,7 @@ module "asg-prd" {
     desired_capacity = "3"
     id_subnet        = module.vpc-prd.id_subnet
     id_vpc           = module.vpc-prd.id_vpc
+    target_group_arns = module.alb-prd.target_group_arns
 }
 
 module "alb-prd" {
