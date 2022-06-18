@@ -15,6 +15,7 @@ module "asg-stg" {
     instance_type    = "t2.micro"
     desired_capacity = "2"
     id_subnet        = module.vpc-stg.id_subnet
+    id_vpc           = module.vpc-stg.id_vpc
 }
 
 module "alb-stg" {

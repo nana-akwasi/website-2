@@ -15,6 +15,7 @@ module "asg-dev" {
     instance_type    = "t2.small"
     desired_capacity = "2"
     id_subnet        = module.vpc-dev.id_subnet
+    id_vpc           = module.vpc-dev.id_vpc
 }
 
 module "alb-dev" {

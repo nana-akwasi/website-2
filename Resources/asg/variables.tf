@@ -17,3 +17,7 @@ variable "desired_capacity" {
 variable "id_subnet" {
     type = set(string)
 }
+
+variable "id_vpc" {
+    type = string
+}
