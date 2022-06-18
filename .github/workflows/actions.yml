@@ -40,9 +40,10 @@ jobs:
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: terraform -chdir=Environments/development apply -auto-approve -input=false
-    - name: Terraform Destroy
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      run: terraform -chdir=Environments/development destroy -auto-approve -input=false
+
+#    - name: Terraform Destroy
+#      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+#      run: terraform -chdir=Environments/development destroy -auto-approve -input=false
 
   stg:
     name: 'Deploy to Stg'
@@ -77,9 +78,9 @@ jobs:
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: terraform -chdir=Environments/staging apply -auto-approve -input=false
 
-    - name: Terraform Destroy
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      run: terraform -chdir=Environments/staging destroy -auto-approve -input=false
+#    - name: Terraform Destroy
+#      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+#      run: terraform -chdir=Environments/staging destroy -auto-approve -input=false
 
   prd:
     name: 'Deploy to Prd'
@@ -114,6 +115,6 @@ jobs:
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: terraform -chdir=Environments/production apply -auto-approve -input=false
 
-    - name: Terraform Destroy
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      run: terraform -chdir=Environments/production destroy -auto-approve -input=false
+#    - name: Terraform Destroy
+#      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+#      run: terraform -chdir=Environments/production destroy -auto-approve -input=false
